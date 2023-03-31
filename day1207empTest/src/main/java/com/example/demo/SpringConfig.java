@@ -15,7 +15,7 @@ public class SpringConfig {
 		r.setHost("smtp.gmail.com");
 		r.setPort(587);
 		r.setUsername("kgukgu33@gmail.com");
-		r.setPassword("mkmptvkvqpwpyxtj");
+		r.setPassword("");
 		r.setDefaultEncoding("UTF-8");
 		
 		Properties prop=new Properties();
