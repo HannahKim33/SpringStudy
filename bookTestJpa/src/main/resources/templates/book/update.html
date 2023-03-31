@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>상품 수정</h2>
+	<hr>
+	<form action="/book/save" method="post">
+		<input type="number" name="bookid" th:value="${b.bookid}"><br>
+		<input type="text" name="bookname" th:value="${b.bookname}"><br>
+		<input type="text" name="publisher" th:value="${b.publisher}"><br>
+		<input type="number" name="price" th:value="${b.price}"><br>
+		<input type="submit" value="수정">
+	</form>
+</body>
+</html>

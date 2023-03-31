@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>주문 목록</h2>
+	<hr>
+	<table border='1'>
+		<tr>
+			<td>주문번호</td>
+			<td>구매자</td>
+			<td>책</td>
+			<td>판매날짜</td>
+			<td>판매가격</td>
+			<td>도서가격</td>
+		</tr>
+		<tr th:each="o:${list}">
+			<td th:text="${o.orderid}"></td>
+			<td th:text="${o.customerVO.name}"></td>
+			<td th:text="${o.bookVO.bookname}"></td>
+			<td th:text="${o.orderdate}"></td>
+			<td th:text="${o.saleprice}"></td>
+			<td th:text="${o.bookVO.price}"></td>
+		</tr>
+	</table>
+</body>
+</html>

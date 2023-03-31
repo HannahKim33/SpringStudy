@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$(".del").click(function(e){
+			if(!confirm("정말로 삭제하시겠습니까?")){
+				e.preventDefault();
+			}
+		})
+	})
+</script>
+</head>
+<body>
+	<h2>도서 목록</h2>
+	<hr>
+	<a href="insert">등록</a>
+	<form action="/book/list" method="post">
+		<select name="col">
+			<option value="bookid">도서번호</option>
+			<option value="bookname">도서명</option>
+			<option value="publisher">출판사</option>
+			<option value="price">가격</option>
+		</select>
+		<select name="op">
+			<option><</option>
+			<option><=</option>
+			<option>></option>
+			<option>>=</option>
+			<option>=</option>
+		</select>
+		<input type="search" name="keyword">
+		<input type="submit" value="검색">
+	</form>
+	<table>
+		<tr>
+			<td>도서번호</td>
+			<td>도서이름</td>
+			<td>출판사</td>
+			<td>가격</td>
+			<td></td>
+		</tr>
+		<tr th:each="b:${list}">
+			<td th:text="${b.bookid}"></td>
+			<td th:text="${b.bookname}"></td>
+			<td th:text="${b.publisher}"></td>
+			<td th:text="${b.price}"></td>
+			<td>
+				<a th:href="@{'/book/update/'+${b.bookid}}" th:text="수정"></a>
+				<a class="del" th:href="@{'delete/'+${b.bookid}}" th:text="삭제"></a>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

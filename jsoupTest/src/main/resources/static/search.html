@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$(".btnSearch").click(function(){
+			var sort=$(this).attr("sort");
+			var search=$("#search").val();
+			var data={search:search, sort:sort};
+			$.ajax({
+				url:"/shop",
+				data:data,
+				success:function(result){
+					$("#price").html(result.price);
+					$("#item").html(result.item);
+					$("#link").attr("href",result.link)
+				}
+			})
+		})
+	})
+
+</script>
+</head>
+<body>
+	<input type="search" name="keyword" id="keyword">
+	<button class="btnSearch" sort="asc">최저가 검색</button>
+	<button class="btnSearch" sort="dsc">최고가 검색</button>
+	
+	가격 : <span th:text="${price}"></span><br>
+	판매처 : <span th:text="${shopname}"></span><br>
+	<a th:href="${link}" th:text="링크"></a>
+</body>
+</html>

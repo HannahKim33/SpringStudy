@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>게시물 삭제</h2>
+	<hr>
+	<form action="/board/delete" method="post">
+		암호: <input type="password" name="pwd">
+		<input type="hidden" name="no" th:value="${no}">
+		<input type="submit" value="삭제">
+	</form>
+</body>
+</html>

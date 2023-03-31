@@ -1,0 +1,6 @@
+create table log(
+uri varchar2(60),
+ip varchar2(60),
+delay number,
+logdate date
+);

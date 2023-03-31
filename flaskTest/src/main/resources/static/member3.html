@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#btnOK").click(function(){
+			$.ajax({
+				url:"/listMember",				
+				success:function(data){
+					data = eval("("+data+")");
+					//console.log(data);
+					
+					$.each(data, function(){
+						var tr = $("<tr></tr>");
+						$(tr).append( $("<td></td>").html(this.name) )
+						$(tr).append( $("<td></td>").html(this.addr) )
+						$(tr).append( $("<td></td>").html(this.age) )
+						$("#list").append(tr);
+					})
+					
+				}
+			})
+		});
+	})
+</script>
+</head>
+<body>
+	<h2>회원목록</h2>
+	<table border="1" width="80%">
+		<tr>
+			<td>이름</td>
+			<td>주소</td>
+			<td>나이</td>
+		</tr>
+		<tbody id="list"></tbody>
+	</table>
+	<button id="btnOK">데이터 받아오기</button>
+</body>
+</html>
+
+

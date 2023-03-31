@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>회원 목록</h2>
+	<hr>
+	<table border='1'>
+		<tr>
+			<td>아이디</td>
+			<td>비밀번호</td>
+			<td>이름</td>
+			<td>role</td>
+		</tr>
+		<tr th:each="m:${list}">
+			<td>
+				<a th:href="@{'/admin/member/detail/'+${m.id}}" th:text="${m.id}"></a>
+			</td>
+			<td th:text="${m.pwd}"></td>
+			<td th:text="${m.name}"></td>
+			<td th:text="${m.role}"></td>
+			<td>
+				<a th:href="@{'/admin/member/update/'+${m.id}}">수정</a>
+				<a th:href="@{'/admin/member/delete/'+${m.id}}">삭제</a>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		
+		$("#btnOK").click(function(){
+			$.ajax({
+				url:"http://127.0.0.1:5000/hello",
+				dataType:"jsonp",
+				jsonpCallback:"pro",
+				success:function(data){
+					var name = data.name;
+					var age = data.age;
+					console.log(name)
+					console.log(age)
+				}
+			})	
+		});		
+	})
+</script>
+</head>
+<body>
+	<h2>Test</h2>	
+	<button id="btnOK">플라스크 서버 요청하기</button>
+</body>
+</html>

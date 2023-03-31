@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$(".delete").click(function(event){
+		if(confirm("정말로 삭제하시겠습니까?")==false){
+			event.preventDefault();
+		}
+	})
+})
+</script>
+</head>
+<body>
+	<h2>상품목록</h2>
+	<hr>
+	<a href="insert">등록</a>
+	<table border='1' width="80%">
+		<tr>
+			<td>상품번호</td>
+			<td>상품명</td>
+			<td>수량</td>
+			<td>가격</td>
+			<td>파일이름</td>
+			<td>액션</td>
+		</tr>
+		<tr th:each="g:${list}">
+			<td th:text="${g.no}"></td>
+			<td th:text="${g.name}"></td>
+			<td th:text="${g.qty}"></td>
+			<td th:text="${g.price}"></td>
+			<td th:text="${g.fname}"></td>
+			<td>
+				<a th:href="@{'/goods/update/'+${g.no}}" th:text="수정"></a>
+				<a class="delete" th:href="@{'/goods/delete/'+${g.no}}" th:text="삭제"></a>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

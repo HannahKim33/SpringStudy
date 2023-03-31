@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$.ajax({
+		url:"/seat",
+		success:function(str){
+			$("#span").text(str)
+		}
+	})
+})
+</script>
+</head>
+<body>
+	잔여 좌석: <span id="span"></span>
+</body>
+</html>

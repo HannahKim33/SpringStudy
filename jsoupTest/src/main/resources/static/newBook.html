@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$.ajax({
+			url:"/newbook",
+			success:function(arr){
+				$.each(arr,function(){
+					var li=$("<li></li>");
+					var a=$("<a></a>").html(this.title).attr("href","http://www.hanb.co.kr"+this.link);
+					$(li).append(a);
+					$("#list").append(li);
+					
+				})
+			}
+		})
+		
+		$.ajax({
+			url:"/seat",
+			success:function(str){
+				$("#seat").text(str)
+			}
+		})
+		
+		$.ajax({
+			url:"/news",
+			success:function(list){
+				$.each(list,function(){
+					var a=$("<a></a>").text(this.title).attr("href",this.link);
+					var li=$("<li></li>").append(a);
+					$("#news_list").append(li);
+				})
+			}
+		})
+	})
+</script>
+</head>
+<body>
+	마포평생학습관 빈자리 수 : <span id="seat"></span>
+	<hr>
+	<h2>새로운 도서 정보</h2>
+	<hr>
+	<ul id="list"></ul>
+	<hr>
+	<h2>뉴스</h2>
+	<ul id="news_list"></ul>
+</body>
+</html>

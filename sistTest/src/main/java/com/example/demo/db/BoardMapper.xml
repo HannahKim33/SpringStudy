@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+
+  <select id="findAll" resultType="boardVO">
+    select * from goods
+  </select>
+  
+  <select id="getTotalRecord" resultType="java.lang.Integer">
+  	select count(no) from board
+  </select>
+  
+  <select id="findByNo" resultType="boardVO">
+  	select * from board where no=#{no}
+  </select>
+  
+  <select id="getNextNo" resultType="java.lang.Integer">
+  	select nvl(max(no),0)+1 from board
+  </select>
+  
+  <insert id="insert" parameterType="boardVO">
+  	insert into board(no,writer,pwd,title,content,regdate,hit,fname,b_ref,b_step,b_level) 
+  	values(#{no},#{writer},#{pwd},#{title},#{content},sysdate,0,#{fname},#{b_ref},#{b_step},#{b_level})
+  </insert>
+  
+  <update id="update" parameterType="boardVO">
+	update board set title=#{title}, content=#{content}, fname=#{fname} where no=#{no} and pwd=#{pwd} 
+  </update>
+  
+  <delete id="delete" parameterType="java.util.HashMap">
+  	delete board where no=#{no} and pwd=#{pwd}
+  </delete>
+  
+  <update id="increaseB_step" parameterType="java.util.HashMap">
+  	update board set b_step=b_step+1 where b_ref=#{b_ref} and b_step>#{b_step}
+  </update>
+  
+  
+</mapper>

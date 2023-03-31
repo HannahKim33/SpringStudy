@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#btn").click(function(){
+		if(confirm("정말로 삭제?")){
+			alert("ok")
+			//location.href="@{'/dept/delete/'+${d.dno}}";
+			location.href="/dept/list";
+		}
+	})	
+})
+</script>
+</head>
+<body>
+	<h2>부서 상세</h2>
+	<hr>
+	부서번호 : <span th:text="${d.dno}"></span><br>
+	부서이름 : <span th:text="${d.dname}"></span><br>
+	부서위치 : <span th:text="${d.dloc}"></span><br>
+	<a th:href="@{'/dept/delete/'+${d.dno}}">삭제</a>
+	<button id="btn">삭제</button>
+</body>
+</html>

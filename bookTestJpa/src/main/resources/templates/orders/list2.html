@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>주문 목록</h2>
+	<hr>
+	<form action="/orders/list2" method="post">
+		<input type="search" name="keyword">
+		<input type="submit" value="검색">
+	</form>
+	<table border='1'>
+		<tr>
+			<td><a th:href="@{/orders/list2/orderid}" th:text="주문번호"></a></td>
+			<td><a th:href="@{/orders/list2/name}" th:text="구매자"></a></td>
+			<td><a th:href="@{/orders/list2/bookname}" th:text="책"></a></td>
+			<td><a th:href="@{/orders/list2/orderdate}" th:text="판매날짜"></a></td>
+			<td><a th:href="@{/orders/list2/saleprice}" th:text="판매가격"></a></td>
+			<td><a th:href="@{/orders/list2/price}" th:text="도서가격"></a></td>
+		</tr>
+		<tr th:each="v:${list}">
+			<td th:text="${v.orderid}"></td>
+			<td th:text="${v.name}"></td>
+			<td th:text="${v.bookname}"></td>
+			<td th:text="${v.orderdate}"></td>
+			<td th:text="${v.saleprice}"></td>
+			<td th:text="${v.price}"></td>
+		</tr>
+	</table>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<!-- iamport.payment.js -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
+<script type="text/javascript">
+	$(function(){
+		
+		var IMP = window.IMP; // Can be omitted
+	   	IMP.init("imp87538326"); // Example: imp00000000
+	   	
+	   	$("#btnOK").click(function(){
+	   		alert("d");
+	        // IMP.request_pay(param, callback) -> Open payment page
+	        IMP.request_pay({ // param
+	            pg: "kcp",
+	            pay_method: "card",
+	            merchant_uid: "ORD"+new Date().getTime(),
+	            name: "축구공",
+	            amount: 100,
+	            buyer_email: "kgukgu33@gmail.com",
+	            buyer_name: "홍길동",
+	            buyer_tel: "010-4242-4242",
+	            buyer_addr: "서울특별시 강남구 신사동",
+	            buyer_postcode: "01181"
+	        }, function (rsp) { // callback
+	            if (rsp.success) {
+	                // Logic for when payment is successful
+	                console.log("결제완료");
+	                console.log("고유ID:"+rsp.imp_uid);
+	                console.log("상점거래 ID:"+rsp.merchant_uid);
+	                console.log("결제금액:"+rsp.paid_amount);
+	                console.log("카드 승인번호:"+rsp.apply_num);
+	                $("#imp_uid").val(rsp.imp_uid);
+	                $("#merchant_uid").val(rsp.merchant_uid);
+	                $("#paid_amount").val(rsp.paid_amount);
+	                $("#apply_num").val(rsp.apply_num);
+	                $("#pay").submit();
+	            } else {
+	                // Logic for when payment fails
+	                console.log("결제실패");
+	                console.log("에러내용:"+rsp.error_msg);
+	            }
+	        });
+	   		
+	   	})
+	   	
+	   	
+	})
+
+	
+</script>
+</head>
+<body>
+	<button id="btnOK">결제하기</button>
+	<hr>
+	<form action="/payok" method="post" id="pay">
+		<input type="hidden" name="imp_uid" id="imp_uid">
+		<input type="hidden" name="merchant_uid" id="merchant_uid">
+		<input type="hidden" name="paid_amount" id="paid_amount">
+		<input type="hidden" name="apply_num" id="apply_num">
+	</form>
+</body>
+</html>

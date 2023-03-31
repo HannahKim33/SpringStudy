@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	/*
+	$(".row").click(function(){
+		//var td=$(this).find("td");
+		location.href="/board/detail/"+$($(this).find("td")[0]).text();
+	})
+	*/
+})
+</script>
+</head>
+<body>
+	<h2>게시물 목록</h2>
+	<hr>
+	<a href="/board/insert">등록</a>
+	<a href="/board/list/1/all">All</a>
+	<div th:if="${session.id}!=null">
+		<span th:text="${session.id}+'님 로그인 하였습니다.'"></span>
+	</div>
+	<table border="1" width="80%">
+		<tr>
+			<td>글번호</td>
+			<td>글제목</td>
+			<td>작성자</td>
+			<td>등록일</td>
+		</tr>
+		<tr th:each="b:${list}" th:class="row">
+			<td th:text="${b.no}"></td>
+			<td>
+				<span th:if="${b.b_level}>0">
+					<th:block th:each="i: ${#numbers.sequence(1, b.b_level)}">
+					=
+					</th:block>
+					>
+				</span>
+				<a th:href="@{'/board/detail/'+${b.no}}" th:text="${b.title}"></a>
+			</td>
+			<td> 
+				<a th:href="@{'/board/list/1/'+${b.member.id}}" th:text="${b.member.id}"></a>
+			</td>
+			<td th:text="${b.regdate}"></td>
+		</tr>
+	</table>
+	<th:block th:each="i: ${#numbers.sequence(1, totalPage)}">
+		<a th:href="@{'/board/list/'+${i}}" th:text="${i}"></a>&nbsp;
+	</th:block>
+</body>
+</html>

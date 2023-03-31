@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$.ajax({
+			url:"http://192.168.0.104:8088/book/list",
+			jsonpCallback:"sist",
+			dataType:"jsonp",
+			success:function(data){
+				console.log(data);
+			}
+		})
+	})
+</script>
+</head>
+<body>
+	<h2>다른 도메인에서 ajax 통신</h2>
+</body>
+</html>
