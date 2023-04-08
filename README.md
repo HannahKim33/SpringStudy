@@ -2,6 +2,8 @@
  2022.11.28 - 2022.12.26
 <h2>연습내용</h2>
 
+[상세 연습내용](https://github.com/HannahKim33/TIL.git)
+
 deptTest, sist, test, bookTest, customerTest, MemberTest, MemberCRUD (11/28 - 11/30) 
   - Spring Boot 기본 CRUD
     
